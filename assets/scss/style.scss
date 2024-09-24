@@ -108,9 +108,17 @@ a {
   transition-timing-function: ease-out;
 
   &:hover {
-    color: #fff;
-    text-shadow: 0 0 1px #fff;
+    color: $dark-grey;
+    text-shadow: 0 0 1px $dark-grey;
   }
+}
+
+
+h1, h2, h3, h4, h5 {
+  font-family: $heading-fonts;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
 }
 
 hr {
@@ -190,15 +198,15 @@ table {
     padding: 1px;
     font-size: 0.7em;
     line-height: 1.8;
-    color: #fff;
-    background-color: #777;
+    color: $text;
+    background-color: $light-grey;
     opacity: 0.6;
     min-width: 55px;
     text-align: center;
 }
 
 .highlight-copy-btn:hover {
-    background-color: #666;
+    background-color: $highlight-grey;
 }
 
 // Accessibility
@@ -338,6 +346,12 @@ table {
   p {
     margin: 0;
   }
+
+  a {
+    &:hover {
+      color: $theme;
+    }
+  }
 }
 
 // Spotlight
@@ -395,7 +409,8 @@ p.img-404 {
       }
 
       &:hover {
-        border-color: #fff;
+        border-color: $theme;
+        color: $theme;
       }
 
       svg {
@@ -434,6 +449,10 @@ p.img-404 {
 
   a {
     margin: 0 .2em;
+
+    &:hover {
+      color: $theme;
+    }
   }
 }
 
@@ -444,6 +463,10 @@ p.img-404 {
     display: block;
     text-align: center;
     margin-top: .5em;
+
+    &:hover {
+      color: $theme;
+    }
   }
 }
 
@@ -491,6 +514,10 @@ p.img-404 {
       justify-content: space-between;
       align-items: baseline;
       padding: 12px 0;
+
+      &:hover {
+        color: $theme;
+      }
     }
   }
 
@@ -527,6 +554,10 @@ p.img-404 {
 
     a {
       padding-left: 12px;
+
+      &:hover {
+        color: $theme;
+      }
     }
   }
 }
@@ -721,6 +752,12 @@ a.footnote-ref {
     &::before {
       {{- with .Site.Params.tagSymbol | default "#" -}}content: "{{ . }}"{{- end -}}
     }
+
+    a {
+      &:hover {
+        color: $theme;
+      }
+    }
   }
   .category {
     margin-right: .5em;
@@ -778,6 +815,10 @@ a.footnote-ref {
   a {
     flex-basis: 50%;
     flex-grow: 1;
+
+    &:hover {
+      color: $theme;
+    }
   }
 
   .next-post {text-align: left; padding-right: 5px;}
