@@ -108,8 +108,8 @@ a {
   transition-timing-function: ease-out;
 
   &:hover {
-    color: $dark-grey;
-    text-shadow: 0 0 1px $dark-grey;
+    color: $theme;
+    text-shadow: 0 0 1px $theme;
   }
 }
 
@@ -346,12 +346,6 @@ table {
   p {
     margin: 0;
   }
-
-  a {
-    &:hover {
-      color: $theme;
-    }
-  }
 }
 
 // Spotlight
@@ -410,7 +404,6 @@ p.img-404 {
 
       &:hover {
         border-color: $theme;
-        color: $theme;
       }
 
       svg {
@@ -449,10 +442,6 @@ p.img-404 {
 
   a {
     margin: 0 .2em;
-
-    &:hover {
-      color: $theme;
-    }
   }
 }
 
@@ -463,10 +452,6 @@ p.img-404 {
     display: block;
     text-align: center;
     margin-top: .5em;
-
-    &:hover {
-      color: $theme;
-    }
   }
 }
 
@@ -514,10 +499,6 @@ p.img-404 {
       justify-content: space-between;
       align-items: baseline;
       padding: 12px 0;
-
-      &:hover {
-        color: $theme;
-      }
     }
   }
 
@@ -554,10 +535,6 @@ p.img-404 {
 
     a {
       padding-left: 12px;
-
-      &:hover {
-        color: $theme;
-      }
     }
   }
 }
@@ -659,12 +636,20 @@ hr.post-end {
     margin-left: 1.8em;
   }
 
+  a {
+    &:hover {
+      color: $dark-grey;
+      text-shadow: 0 0 1px $dark-grey;
+    }
+  }
+
   a.anchor {
     float: left;
     margin-left: -20px;
     padding-right: 6px;
     box-shadow: none;
     opacity: .8;
+
     &:hover {
       background: none;
       color: $theme;
@@ -752,12 +737,6 @@ a.footnote-ref {
     &::before {
       {{- with .Site.Params.tagSymbol | default "#" -}}content: "{{ . }}"{{- end -}}
     }
-
-    a {
-      &:hover {
-        color: $theme;
-      }
-    }
   }
   .category {
     margin-right: .5em;
@@ -815,10 +794,6 @@ a.footnote-ref {
   a {
     flex-basis: 50%;
     flex-grow: 1;
-
-    &:hover {
-      color: $theme;
-    }
   }
 
   .next-post {text-align: left; padding-right: 5px;}
