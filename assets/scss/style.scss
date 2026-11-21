@@ -319,16 +319,30 @@ table {
 }
 
 .hdr-icons {
+  // Flex so the icon buttons center on the bar instead of riding a text
+  // baseline. Without this, `.feather`'s `vertical-align: -.125em` (meant for
+  // inline text) lifts the icons ~4px above the bar's optical center.
+  display: flex;
+  align-items: center;
   font-size: 1.2em;
 }
 
 .hdr-social {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
   margin-left: .6em;
 
   &>a {
+    display: inline-flex;
+    align-items: center;
     margin-left: .4em;
   }
+}
+
+// Icons inside header buttons: block removes the baseline/line-height box, so
+// the button's height is exactly the icon's and centers cleanly in `.hdr-icons`.
+.hdr-btn>svg {
+  display: block;
 }
 
 .hdr-btn {
