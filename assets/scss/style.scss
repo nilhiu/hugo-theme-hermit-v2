@@ -8,6 +8,16 @@
 @import "userstyles.scss";
 {{ end }}
 
+/* Braille subset used by the homepage mascot (see static/fonts/README.md) */
+@font-face {
+  font-family: "Sanae Braille";
+  src: url("{{ "fonts/sanae-braille.woff2" | relURL }}") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: block;
+  unicode-range: U+2800-28FF;
+}
+
 /* text selection */
 ::-moz-selection {
   background: var(--sel);
@@ -463,6 +473,38 @@ p.img-404 {
   flex-grow: 1;
   flex-direction: column;
   justify-content: center;
+}
+
+// Braille mascot portrait, tucked into the homepage's bottom-right corner
+// (params.mascot = true). Hidden on narrow screens so it never crowds the menu.
+//
+// The bundled "Sanae Braille" font has a 0.70em cell but only ~0.27em dot pitch,
+// so letter-spacing -0.166em tightens cells into an even grid (dot pitch .25em
+// both ways); line-height 1 gives the vertical half. Size scales with font-size.
+pre.mascot {
+  position: fixed;
+  right: .75rem;
+  bottom: 0;
+  z-index: 0;
+  margin: 0;
+  padding: 0;
+  border: none;
+  background: none;
+  overflow: visible;
+  color: var(--link);
+  font-family: "Sanae Braille", monospace;
+  font-size: clamp(.45rem, .75vw, .7rem);
+  // fatten the tiny dots slightly so they read at small sizes
+  -webkit-text-stroke: .35px currentColor;
+  line-height: 1;
+  letter-spacing: -.166em;
+  font-variant-ligatures: none;
+  user-select: none;
+  pointer-events: none;
+
+  @media (max-width: 900px) {
+    display: none;
+  }
 }
 
 #home-title {

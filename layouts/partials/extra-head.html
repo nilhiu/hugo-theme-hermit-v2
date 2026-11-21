@@ -10,3 +10,6 @@
   document.documentElement.dataset.theme = id;
 })();
 </script>
+{{- if and .IsHome .Site.Params.mascot }}
+<link rel="preload" as="font" type="font/woff2" href="{{ "fonts/sanae-braille.woff2" | relURL }}" crossorigin>
+{{- end }}
