@@ -17,7 +17,7 @@
 				<span class="hdr-social hide-in-mobile">{{- partialCached "social-icons.html" . -}}</span>
 				{{- end -}}
 				{{- if and (not (eq .Site.Params.shareSocial nil)) (.Site.Params.shareSocial) (templates.Exists "partials/social-share.html") -}}{{- partial "social-share.html" . -}}{{- end -}}
-				<button id="theme-btn" class="hdr-btn" title="Switch theme" aria-label="Switch theme"><span class="theme-swatch"></span><span id="theme-name" class="hide-in-mobile"></span></button>
+				{{- partial "theme-toggle.html" . -}}
 				<button id="menu-btn" class="hdr-btn" title="{{i18n "menu"}}">{{- partial "svg.html" (dict "context" . "name" "menuBtn") -}}</button>
 			</div>
 		</div>

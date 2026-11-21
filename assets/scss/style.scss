@@ -366,6 +366,15 @@ table {
   }
 }
 
+// On the homepage (no header bar) the toggle floats in the top-right corner
+#home-theme {
+  position: fixed;
+  top: .9rem;
+  right: 1rem;
+  z-index: 1;
+  font-size: 1.2em;
+}
+
 #menu-btn {
   display: none;
   margin-left: .6em;

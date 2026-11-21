@@ -12,6 +12,7 @@
 	{{- if (or .Site.Params.images .Site.Params.bgImg) }}
 	<div class="bg-img"></div>
 	{{- end }}
+	<div id="home-theme" class="animated fadeIn">{{ partial "theme-toggle.html" . }}</div>
 	<div id="spotlight" class="animated fadeIn">
 		<div id="home-center">
 			{{- if .Site.Params.mascot }}{{ partial "mascot.html" . }}{{ end }}
