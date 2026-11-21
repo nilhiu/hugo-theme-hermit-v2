@@ -121,6 +121,65 @@ const cycleTheme = () => {
 applyTheme(document.documentElement.dataset.theme || THEMES[0][0]);
 listen('#theme-btn', 'click', cycleTheme);
 
+// Mascot: squishy hop when you click the drawn art (not the blank space around it)
+//
+const mascot = document.querySelector('pre.mascot');
+
+if (mascot) {
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+
+  // Is there a visible (non-blank braille) glyph under the point?
+  const artAt = (x, y) => {
+    let node, offset;
+    if (document.caretPositionFromPoint) {
+      const pos = document.caretPositionFromPoint(x, y);
+      if (!pos) return false;
+      node = pos.offsetNode; offset = pos.offset;
+    } else if (document.caretRangeFromPoint) {
+      const range = document.caretRangeFromPoint(x, y);
+      if (!range) return false;
+      node = range.startContainer; offset = range.startOffset;
+    } else {
+      return true; // can't tell, treat the whole box as clickable
+    }
+    if (node.nodeType !== Node.TEXT_NODE || !mascot.contains(node)) return false;
+
+    const probe = document.createRange();
+    for (const i of [offset - 1, offset]) {
+      if (i < 0 || i >= node.length) continue;
+      probe.setStart(node, i);
+      probe.setEnd(node, i + 1);
+      for (const r of probe.getClientRects()) {
+        if (x >= r.left && x <= r.right && y >= r.top && y <= r.bottom) {
+          const ch = node.data[i];
+          return ch !== '\u2800' && ch !== '\n';
+        }
+      }
+    }
+    return false;
+  };
+
+  let hotFrame = null;
+  mascot.addEventListener('mousemove', (e) => {
+    if (hotFrame !== null) return;
+    hotFrame = requestAnimationFrame(() => {
+      hotFrame = null;
+      mascot.classList.toggle('is-hot', artAt(e.clientX, e.clientY));
+    });
+  });
+  mascot.addEventListener('mouseleave', () => mascot.classList.remove('is-hot'));
+
+  mascot.addEventListener('click', (e) => {
+    if (reduceMotion.matches || mascot.classList.contains('hop')) return;
+    if (!artAt(e.clientX, e.clientY)) return;
+    mascot.classList.add('hop');
+    // animationend normally clears it; the timer is a safety net so a skipped
+    // animation can never leave her unclickable
+    setTimeout(() => mascot.classList.remove('hop'), 900);
+  });
+  mascot.addEventListener('animationend', () => mascot.classList.remove('hop'));
+}
+
 if (header !== null) {
   listen('#menu-btn', "click", toggleMobileMenu);
   listen('#share-btn', "click", shareMobileMenu);

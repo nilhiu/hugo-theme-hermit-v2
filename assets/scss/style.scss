@@ -509,11 +509,33 @@ pre.mascot {
   letter-spacing: -.166em;
   font-variant-ligatures: none;
   user-select: none;
-  pointer-events: none;
+  -webkit-tap-highlight-color: transparent;
+  // clicks are filtered in main.js so only the drawn art reacts, not the blank box
+  transform-origin: 50% 100%; // squash and stretch from her feet
+
+  &.is-hot {
+    cursor: pointer;
+  }
+
+  &.hop {
+    animation: mascot-hop .75s linear;
+  }
 
   @media (max-width: 900px) {
     display: none;
   }
+}
+
+// Squishy hop: crouch, stretched leap, squashed landing, small rebound.
+// Distances are in em, so the jump scales with the portrait.
+@keyframes mascot-hop {
+  0%   { transform: none; animation-timing-function: ease-out; }
+  18%  { transform: scale(1.1, .86); animation-timing-function: ease-out; }
+  45%  { transform: translateY(-5em) scale(.92, 1.1); animation-timing-function: ease-in-out; }
+  62%  { transform: translateY(-5.4em) scale(.97, 1.03); animation-timing-function: ease-in; }
+  80%  { transform: translateY(0) scale(1.14, .8); animation-timing-function: ease-out; }
+  90%  { transform: scale(.97, 1.05); animation-timing-function: ease-in-out; }
+  100% { transform: none; }
 }
 
 #home-title {
