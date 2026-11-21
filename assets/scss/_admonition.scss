@@ -1,45 +1,38 @@
-// Admonition styling
+// Admonition styling (colors come from the active palette's --adm-* vars)
 .admonition {
+  --adm: var(--adm-note);
   position: relative;
   margin: 1rem 0 1.5rem 0;
-  border-left: 0.25rem solid map-get($admonition-color, "note");
+  border-left: 0.25rem solid var(--adm);
+  background-color: color-mix(in srgb, var(--adm) 12%, var(--bg));
   box-shadow: 5px 5px 10px -5px rgba(0, 0, 0, 0.5);
   border-radius: 0 8px 8px 0;
   overflow: auto;
+
   .admonition-title {
     padding: 0.25rem 0.5rem;
-    border-bottom: 1px solid map-get($admonition-background, "note");
-    background-color: rgba(map-get($admonition-background, "note"), 0.1);
-    color: map-get($admonition-color, "note");
+    border-bottom: 1px solid color-mix(in srgb, var(--adm) 25%, var(--bg));
+    background-color: color-mix(in srgb, var(--adm) 10%, transparent);
+    color: var(--adm);
+
     .icon {
       display: inline-block;
       padding: 0 10px 0 0;
       font-size: 0.85rem;
-      color: map-get($admonition-color, "note");
+      color: var(--adm);
     }
   }
+
   .admonition-content {
     padding: 0.25rem 0.5rem;
   }
-  @each $type, $color in $admonition-color {
-    &.#{$type} {
-      border-left-color: $color;
-      .admonition-title {
-        color: $color;
-      }
-      .icon {
-        color: $color;
-      }
-    }
-  }
-  @each $type, $color in $admonition-background {
-    &.#{$type} {
-      background-color: $color;
 
-      .admonition-title {
-        border-bottom-color: $color;
-        background-color: rgba($color, 0.1);
-      }
-    }
-  }
+  &.note    { --adm: var(--adm-note); }
+  &.info    { --adm: var(--adm-info); }
+  &.tip     { --adm: var(--adm-tip); }
+  &.success { --adm: var(--adm-success); }
+  &.warning { --adm: var(--adm-warning); }
+  &.failure { --adm: var(--adm-failure); }
+  &.danger  { --adm: var(--adm-danger); }
+  &.bug     { --adm: var(--adm-bug); }
 }

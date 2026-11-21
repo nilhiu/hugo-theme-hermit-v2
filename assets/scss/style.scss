@@ -10,11 +10,13 @@
 
 /* text selection */
 ::-moz-selection {
-  background: $highlight-grey;
+  background: var(--sel);
+  color: var(--fg-strong);
 }
 
 ::selection {
-  background: $highlight-grey;
+  background: var(--sel);
+  color: var(--fg-strong);
 }
 
 /* Webkit Scrollbar Customize */
@@ -25,7 +27,7 @@
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #888;
+  background: $highlight-grey;
 
   &:hover {
     background: $text;
@@ -35,8 +37,9 @@
 html {
   background: $light-grey;
   line-height: 1.6;
-  letter-spacing: .06em;
+  letter-spacing: .005em;
   scroll-behavior: smooth;
+  transition: background-color .25s ease;
 }
 
 body,
@@ -46,6 +49,11 @@ select,
 textarea {
   color: $text;
   font-family: $fonts;
+  font-optical-sizing: auto;
+}
+
+body {
+  font-size: 1.1rem;
 }
 
 pre,
@@ -56,11 +64,12 @@ pre tt {
 
 pre {
   padding: .7em 1.1em;
-  font-size: .9em;
+  font-size: .85em;
   line-height: 1.5;
   letter-spacing: normal;
   white-space: pre;
-  color: #eee;
+  color: $text;
+  border-left: 3px solid $highlight-grey;
   background: $midnightblue;
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
@@ -68,14 +77,16 @@ pre {
   code {
     padding: 0;
     margin: 0;
-    color: #eee;
+    font-size: 1em;
+    color: $text;
     background: transparent;
   }
 }
 
 code {
-  color: hsl(0, 1%, 67%);
+  color: $text;
   background: $dark-grey;
+  font-size: .88em;
   border-radius: 3px;
   padding: 0 3px;
   margin: 0 4px;
@@ -117,8 +128,12 @@ a {
 h1, h2, h3, h4, h5 {
   font-family: $heading-fonts;
   font-optical-sizing: auto;
-  font-weight: 400;
+  font-weight: 600;
   font-style: normal;
+  line-height: 1.2;
+  letter-spacing: -.01em;
+  color: var(--heading);
+  font-variation-settings: "SOFT" var(--h-soft), "WONK" var(--h-wonk);
 }
 
 hr {
@@ -268,6 +283,9 @@ table {
     display: inline-block;
     margin-right: .8em;
     font-size: 1.2em;
+    font-family: $heading-fonts;
+    font-weight: 600;
+    font-variation-settings: "SOFT" var(--h-soft), "WONK" var(--h-wonk);
   }
 
   .site-nav {
@@ -309,6 +327,33 @@ table {
   padding: 0;
   margin-left: .4em;
   cursor: pointer;
+}
+
+// Theme switcher (header button cycles through the palettes)
+#theme-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: .45em;
+  color: $text;
+  font: inherit;
+  font-size: .75em;
+  font-family: $code-fonts;
+  letter-spacing: normal;
+  vertical-align: middle;
+
+  &:hover {
+    color: $theme;
+  }
+
+  .theme-swatch {
+    display: inline-block;
+    width: 1em;
+    height: 1em;
+    border-radius: 50%;
+    border: 2px solid $text;
+    // page color + link color + accent, straight from the active palette
+    background: conic-gradient(var(--link) 0 33%, var(--accent) 0 66%, var(--bg-panel) 0);
+  }
 }
 
 #menu-btn {

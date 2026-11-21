@@ -1,0 +1,80 @@
+// Palettes. Switch with <html data-theme="light|dark">; `light` is the :root fallback.
+//
+// Both share one identity: mint/forest green for headings + links, gold for
+// hover / focus / cursor. Light is the Herdr "sanae-day" palette; dark keeps the
+// Pi "moriya-shrine" backgrounds with accents retuned to mirror the light theme.
+//
+// bg = page, bg-deep = header / inline code, bg-panel = code blocks,
+// hl = borders, sel = ::selection, link = content links,
+// accent = hover / focus / cursor, heading = h1-h5.
+
+:root,
+[data-theme="light"] {
+  color-scheme: light;
+  --bg: #f7fbf8;
+  --bg-deep: #e4efe8;
+  --bg-panel: #ffffff;
+  --hl: #c3d8cb;
+  --sel: #d4e8dc;
+  --fg: #1d2f28;
+  --fg-strong: #0f1f19;
+  --heading: #2f7d4f;
+  --link: #2f7d4f;
+  --accent: #a07d24;
+
+  --syn-kw: #2b6cb0;
+  --syn-fn: #8a6a1f;
+  --syn-str: #2f7d4f;
+  --syn-num: #8a4fa8;
+  --syn-type: #1f7a72;
+  --syn-cmt: #7d968a;
+  --syn-op: #4f6b5e;
+  --syn-err: #b83a3a;
+
+  --adm-note: #2b6cb0;
+  --adm-info: #1f7a72;
+  --adm-tip: #2f7d4f;
+  --adm-success: #2f7d4f;
+  --adm-warning: #8a6a1f;
+  --adm-failure: #b83a3a;
+  --adm-danger: #b83a3a;
+  --adm-bug: #c0602b;
+
+  --h-soft: 50;
+  --h-wonk: 0;
+}
+
+[data-theme="dark"] {
+  color-scheme: dark;
+  --bg: #0d1a17;
+  --bg-deep: #0a1512;
+  --bg-panel: #14261f;
+  --hl: #24443a;
+  --sel: #1e3a33;
+  --fg: #d8e8dd;
+  --fg-strong: #f2fbf5;
+  --heading: #7fd6a4;
+  --link: #7fd6a4;
+  --accent: #e5c07b;
+
+  --syn-kw: #5aa9e6;
+  --syn-fn: #e5c07b;
+  --syn-str: #8fd14f;
+  --syn-num: #c678dd;
+  --syn-type: #56d4c0;
+  --syn-cmt: #4a6157;
+  --syn-op: #9db8ab;
+  --syn-err: #e5646e;
+
+  --adm-note: #5aa9e6;
+  --adm-info: #56d4c0;
+  --adm-tip: #7fd6a4;
+  --adm-success: #7fd6a4;
+  --adm-warning: #e5c07b;
+  --adm-failure: #e5646e;
+  --adm-danger: #e5646e;
+  --adm-bug: #f0a05a;
+
+  --h-soft: 50;
+  --h-wonk: 0;
+}

@@ -1,36 +1,14 @@
-// Default Colors (I'm too lazy to replace the names)
-$theme: #a7c080 !default;
-$text: #d3c6aa !default;
-$light-grey: #2e383c !default;
-$dark-grey: #1e2326 !default;
-$highlight-grey: #4f5b5b !default;
-$midnightblue: #272e33 !default;
-$typewriter: #4f5b58 !default;
+// Colors are CSS custom properties; palettes live in _themes.scss and are
+// switched at runtime through <html data-theme="...">.
+$theme: var(--accent) !default;
+$text: var(--fg) !default;
+$light-grey: var(--bg) !default;
+$dark-grey: var(--bg-deep) !default;
+$highlight-grey: var(--hl) !default;
+$midnightblue: var(--bg-panel) !default;
+$typewriter: var(--accent) !default;
 
-// Scroll to Top Default colors
-$stt-stroke: #a7c080 !default;
-$stt-circle: #1e2326 !default;
-$stt-arrow: #d3c6aa !default;
-
-//Admonition colors
-$admonition-color: (
-    "note": #7fbbb3,
-    "info": #83c092,
-    "tip": #83c092,
-    "success": #a7c080,
-    "warning": #dbbc7f,
-    "failure": #e67e80,
-    "danger": #e67e80,
-    "bug": #e69875,
-    ) !default;
-
-$admonition-background: (
-    "note": #384b55,
-    "info": #3c4841,
-    "tip": #3c4841,
-    "success": #3c4841,
-    "warning": #45443c,
-    "failure": #4c3743,
-    "danger": #4c3743,
-    "bug": #493b40,
-    ) !default;
+// Scroll to Top colors
+$stt-stroke: var(--accent) !default;
+$stt-circle: var(--bg-deep) !default;
+$stt-arrow: var(--fg) !default;

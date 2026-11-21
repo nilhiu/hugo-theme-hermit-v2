@@ -95,6 +95,32 @@ const toggleToc = () => {
 }
 
 
+// Theme switcher
+//
+const THEMES = [
+  ['light', 'light'],
+  ['dark', 'dark'],
+];
+
+const applyTheme = (id) => {
+  document.documentElement.dataset.theme = id;
+  try { localStorage.setItem('theme', id); } catch (e) {}
+  const entry = THEMES.find((t) => t[0] === id) || THEMES[0];
+  const label = document.getElementById('theme-name');
+  if (label) label.textContent = entry[1];
+  const meta = document.querySelector('meta[name="theme-color"]');
+  if (meta) meta.content = getComputedStyle(document.documentElement).getPropertyValue('--bg').trim();
+};
+
+const cycleTheme = () => {
+  const current = document.documentElement.dataset.theme || THEMES[0][0];
+  const idx = THEMES.findIndex((t) => t[0] === current);
+  applyTheme(THEMES[(idx + 1) % THEMES.length][0]);
+};
+
+applyTheme(document.documentElement.dataset.theme || THEMES[0][0]);
+listen('#theme-btn', 'click', cycleTheme);
+
 if (header !== null) {
   listen('#menu-btn', "click", toggleMobileMenu);
   listen('#share-btn', "click", shareMobileMenu);
